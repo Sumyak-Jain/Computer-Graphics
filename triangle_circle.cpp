@@ -1,78 +1,96 @@
-// triangle in circle with a line
-
 #include<GL/glut.h>
-#include<GL/gl.h>
-#include<cmath>
+#include<math.h>
 
 
-void init(void)
+void init(){
+   //glClearColor(1.0, 1.0, 1.0, 0.0); // Set display window colour to white
+    glMatrixMode(GL_PROJECTION);
+    glOrtho(-10,10,-10,10,0,10);
+}
+
+
+void display(){
+     glClear(GL_COLOR_BUFFER_BIT);
+     glColor3f(0.0,0.0,1.0);
+
+
+     glBegin(GL_LINES);
+     glColor3f(1.0, 0.0, 0.0);
+     for(int i=0;i<360;i++)
+     {
+         float theta1= (i+0.5)*3.142/180;
+         float theta2= (i-0.5)*3.142/180;
+         glVertex2f(8*cos(theta1),8*sin(theta1));
+         glVertex2f(8*cos(theta2),8*sin(theta2));
+     }
+     glEnd();
+
+     glBegin(GL_LINES);
+     glColor3f(1.0, 1.0,0.0);
+     glVertex2f(0,8);
+     glVertex2f(-6.3,-5);
+
+     glVertex2f(-6.3,-5);
+     glVertex2f(6.3,-5);
+
+     glVertex2f(6.3,-5);
+     glVertex2f(0,8);
+
+     glVertex2f(0,8);
+     glVertex2f(0,-5);
+
+     glVertex2f(0,2);
+     glVertex2f(-2.91,2);
+
+     glVertex2f(0,4);
+     glVertex2f(-1.95,4);
+
+     glVertex2f(0,6);
+     glVertex2f(-0.97,6);
+
+     glVertex2f(0,0);
+     glVertex2f(-3.88,0);
+
+     glVertex2f(0,-2);
+     glVertex2f(-4.85,-2);
+
+     glVertex2f(0,-4);
+     glVertex2f(-5.83,-4);
+
+
+     //diagonal lines
+
+     glVertex2f(0,2);
+     glVertex2f(2.43,3);
+
+     glVertex2f(0,4);
+     glVertex2f(1.46,5);
+
+     glVertex2f(0,6);
+     glVertex2f(0.73,6.5);
+
+     glVertex2f(0,0);
+     glVertex2f(3.40,1);
+
+     glVertex2f(0,-2);
+     glVertex2f(4.37,-1);
+
+     glVertex2f(0,-4);
+     glVertex2f(5.34,-3);
+
+
+     glEnd();
+     glFlush();
+}
+
+int main(int argc,char **argv)
 {
- glClearColor(1.0, 1.0, 1.0, 0.0); // Set display window colour to white
-
-}
-void draw(void){
-
-glClear(GL_COLOR_BUFFER_BIT);
-
-float t1,t2,t3,t4,t5,t6;
-
-glPointSize(2);
- glBegin(GL_POINTS);
- glColor3f(1.0, 0.0, 0.0);
- for(int i=0;i<1000;++i)
-  {
-  glVertex3f(cos(2*3.14159*i/180.0),sin(2*3.14159*i/180.0),0);
-  
-   if(i==45)
-	{
-	t1=cos(2*3.14159*i/180.0);
-	t2=sin(2*3.14159*i/180.0);
-	}  
-
-  else if(i==112)
-	{
-	t3=cos(2*3.14159*i/180.0);
-	t4=sin(2*3.14159*i/180.0);
-	}  
-
-  else if(i==157)
-	{
-	t5=cos(2*3.14159*i/180.0);
-	t6=sin(2*3.14159*i/180.0);
-	}  
-
-}  
- 
- glEnd();
-
-glBegin(GL_TRIANGLES);
-glColor3f(1.0, 0.0, 0.0);
-glVertex2f(t1,t2);
-glVertex2f(t3,t4);
-glVertex2f(t5,t6);
-glEnd();
-
-
-glBegin(GL_LINES);
-glColor3f(1.0, 1.0,0.0);
-glVertex2f(t1,t2);
-glVertex2f((t3+t5)/2,(t4+t6)/2);
-glEnd();
- glFlush();
-}
-
-int main(int argc,char** argv){
-glutInit(&argc,argv);
-glutInitDisplayMode(GLUT_SINGLE);
-glutInitWindowSize(500,500);
-glutCreateWindow("Triangle in circle");
-init();
-//glMatrixMode(GL_PROJECTION);
-//glLoadIdentity();
-//gluOrtho2D(100,200,100,200);
-glutDisplayFunc(draw);
-glutMainLoop();
-
-
-return 0;
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
+    glutInitWindowPosition(100,100);
+    glutInitWindowSize(600,600);
+    glutCreateWindow("Sumyak triangle in circle");
+    init();
+    glutDisplayFunc(display);
+    glutMainLoop();
 }
