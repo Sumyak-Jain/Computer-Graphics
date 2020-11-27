@@ -10,7 +10,6 @@
 #define HEIGHT 480
  
  
- 
 void reshape(int width, int height){
 glViewport(0,0,width,height);
 glMatrixMode(GL_PROJECTION);
