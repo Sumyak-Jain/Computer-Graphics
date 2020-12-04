@@ -1,7 +1,6 @@
 #include<iostream> 
 #include<GL/glut.h> 
 #include<math.h> 
-
 using namespace std;
 
 float x,x2,x3,y,y2,y3,tx,ty,Sx,Sy,X,X2,X3,Y,Y2,Y3,theta;
