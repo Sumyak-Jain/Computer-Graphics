@@ -5,8 +5,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
- 
-#define WIDTH 640
+ #define WIDTH 640
 #define HEIGHT 480
  
 void reshape(int width, int height){
